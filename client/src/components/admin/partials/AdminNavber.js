@@ -1,5 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
+
+import { LayoutContext } from "../../shop/index";
 
 const AdminNavber = (props) => {
   const history = useHistory();
@@ -10,6 +12,14 @@ const AdminNavber = (props) => {
     localStorage.removeItem("wishList");
     window.location.href = "/";
   };
+
+
+  const { data, dispatch } = useContext(LayoutContext);
+
+  const navberToggleOpen = () =>
+    data.navberHamburger
+      ? dispatch({ type: "hamburgerToggle", payload: false })
+      : dispatch({ type: "hamburgerToggle", payload: true });
 
   return (
     <Fragment>
@@ -52,6 +62,7 @@ const AdminNavber = (props) => {
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={(e) => navberToggleOpen()}
           >
             <path
               strokeLinecap="round"
@@ -199,6 +210,43 @@ const AdminNavber = (props) => {
         {/* Mobile Navber */}
         {/* End Mobile Navber */}
       </nav>
+      <div
+      className={
+        data.navberHamburger && data.navberHamburger
+          ? "px-1 pb-2 md:pb-0 md:px-10 lg:hidden"
+          : "hidden px-1 pb-2 md:pb-0 md:px-10 lg:hidden"
+      }
+    >
+      <div className="col-span-1 flex flex-col text-gray-600">
+        <span
+          className="py-5 px-5 font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
+          onClick={(e) => history.push("/admin/dashboard")}
+        >
+          Dashboard
+        </span>
+        <hr />
+        <span
+          className="py-5 px-5 font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
+          onClick={(e) => history.push("/admin/dashboard/categories")}
+        >
+          Category
+        </span>
+        <hr />
+        <span
+          className="py-5 px-5 font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
+          onClick={(e) => history.push("/admin/dashboard/products")}
+        >
+          Products
+        </span>
+        <hr />
+        <span
+        className="py-5 px-5 font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
+        onClick={(e) => history.push("/admin/dashboard/orders")}
+      >
+        Orders
+      </span>
+      </div>
+    </div>
     </Fragment>
   );
 };
