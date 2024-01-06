@@ -65,7 +65,7 @@ const Navber = (props) => {
             <span
               onClick={(e) => history.push("/")}
               style={{ letterSpacing: "0.10rem" }}
-              className="flex items-left text-center font-bold uppercase text-gray-800 text-2xl cursor-pointer px-2 text-center"
+              className="text-sm flex items-left text-center font-bold uppercase text-gray-800 cursor-pointer px-2 text-center"
             >
               Case Culture
             </span>
@@ -366,12 +366,6 @@ const Navber = (props) => {
               onClick={(e) => history.push("/")}
             >
               Shop
-            </span>
-            <span
-              className="font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
-              onClick={(e) => history.push("/blog")}
-            >
-              Blog
             </span>
             <span
               className="font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
